@@ -10,11 +10,11 @@
 [format]
   pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cr)%Creset
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [difftool "diffmerge"]
   cmd = diffmerge.sh "$LOCAL" "$REMOTE"
 [mergetool "diffmerge"]
@@ -44,4 +44,4 @@
   email = hello@christianrijke.de
 # project specific configuration
 [include]
-    path = ~/.gitconfig_projects
+  path = ~/.gitconfig_projects
