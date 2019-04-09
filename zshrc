@@ -50,6 +50,9 @@ alias dockerstopa='docker stop $(docker ps -a -q)'
 alias dockerrma='docker rm -f $(docker ps -aq)'
 alias dockerrmia='docker rmi -f $(docker images -aq)'
 
+# project specific settings
+source ~/.zshrc_projects
+
 # fortune
 echo && fortune
 
