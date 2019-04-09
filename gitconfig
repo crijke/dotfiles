@@ -1,0 +1,47 @@
+[core]
+  editor = "mvim -v"
+  excludesfile = /Users/crijke/.gitignore
+  quotepath = false
+[color]
+  ui = true
+  diff = auto
+  status = auto
+  branch = auto
+[format]
+  pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cr)%Creset
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[difftool "diffmerge"]
+  cmd = diffmerge.sh "$LOCAL" "$REMOTE"
+[mergetool "diffmerge"]
+  cmd = diffmerge.sh "$LOCAL" "$REMOTE"
+[diff]
+  tool = diffmerge
+[merge]
+  tool = diffmerge
+[includeIf "gitdir:~/"]
+  path = .gitconfig-personal
+[url "https://"]
+  insteadOf = git://
+[github]
+  user = crijke
+[http]
+  postBuffer = 524288000
+[alias]
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+[push]
+  default = simple
+[commit]
+  template = /Users/crijke/.stCommitMsg
+[credential]
+  helper = store
+[user]
+  name = Christian Rijke
+  email = hello@christianrijke.de
+# project specific configuration
+[include]
+    path = ~/.gitconfig_projects

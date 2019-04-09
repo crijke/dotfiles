@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# homebrew
+brew update
+brew upgrade
+brew cleanup
+brew prune
+brew doctor
+
+# vim
+mvim -v +BundleUpdate +qall
+
+# mac app store
+mas upgrade
+
