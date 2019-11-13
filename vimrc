@@ -1,42 +1,15 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
 
-" environment
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'rgarver/Kwbd.vim'
-Bundle 'Valloric/ListToggle'
+" Install and run vim-plug on first run
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" git
-Bundle 'tpope/vim-fugitive'
-Bundle 'airblade/vim-gitgutter'
+so ~/.vim/plugins.vim
 
-" source navigation
-Bundle 'aghareza/vim-gitgrep'
-Bundle 'scrooloose/syntastic'
-
-" typing
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'tpope/vim-ragtag'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'kana/vim-textobj-user'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-
-" markup
-Bundle 'tpope/vim-markdown'
-Bundle 'avakhov/vim-yaml'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'tpope/vim-haml'
-
-" js
-Bundle 'pangloss/vim-javascript'
 
 set encoding=utf-8
 set hidden
