@@ -10,6 +10,11 @@ brew doctor
 # vim
 mvim -v +BundleUpdate +qall
 
+# emacs
+cd ~/.emacs.d
+git pull
+cd
+
 # mac app store
 mas upgrade
 
