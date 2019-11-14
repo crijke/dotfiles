@@ -149,6 +149,9 @@ let g:buffergator_viewport_split_policy="B"
 let g:buffergator_suppress_keymaps=1
 let g:buffergator_split_size=10
 
+"airline
+let g:airline#extensions#tabline#enabled = 1
+
 " resize splits when resizing window
 au VimResized * :wincmd =
 

@@ -6,6 +6,8 @@ Plug 'kien/ctrlp.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'rgarver/Kwbd.vim'
 Plug 'Valloric/ListToggle'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'bling/vim-airline'
 
 " git
 Plug 'tpope/vim-fugitive'

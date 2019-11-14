@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 function install_dotfiles {
   echo "installing dotfile..."
   files=(gitignore gitconfig gitconfig-personal gitconfig-work vimrc zshrc bin)
@@ -8,17 +7,11 @@ function install_dotfiles {
   do
     ln -svf "$PWD/$i" "$HOME/.$i"
   done
-}
-
-function install_vundle {
-  echo "installing vim configuration..."
-  mkdir "$HOME/.vim/bundle"
-  git clone https://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
-  vim +BundleInstall +qall
+  ln -svf "$PWD/nvim/init.vim" ~/.config/nvim/init.vim
+  ln -svf "$PWD/vim/plugins.vim" ~/.vim/plugins.vim
 }
 
 function install_oh_my_zsh {
-  title "oh-my-zsh"
   read -p "install zsh? [yn]" -n 1 -r
   echo
   if [[ $REPLY =~ ^[Yy]$ ]]
@@ -30,6 +23,5 @@ function install_oh_my_zsh {
 }
 
 install_dotfiles
-install_vundle
 install_oh_my_zsh
 
