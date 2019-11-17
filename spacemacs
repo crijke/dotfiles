@@ -32,7 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -46,13 +46,13 @@ This function should only modify configuration layer settings."
      ;; lsp
      markdown
      multiple-cursors
-     org
+    (org :variables org-enable-org-journal-support t)
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
-     treemacs
+     ;; treemacs
      ;; version-control
      )
 
@@ -466,6 +466,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
           ("SOMEDAY" . "#585858")
           ("DONE" . "#5f8700")
           ))
+  (setq org-tag-alist '(("WORK" . ?w) ("HOME" . ?h) ("ERRAND" . ?e) ("FLAGGED" . ?f)))
   )
 
 (defun dotspacemacs/user-load ()
@@ -485,8 +486,12 @@ before packages are loaded."
   (setq org-agenda-files (list "~/org/tasks.org"
                                "~/org/inbox.org"
                                "~/org/notes.org"))
+  (setq org-journal-dir "~/org/journal/")
+  (setq org-journal-file-format "%Y%m%d.org")
+  (org-journal-update-auto-mode-alist)
+  (setq org-journal-date-prefix "#+TITLE: ")
   (global-auto-revert-mode t)
-  )
+)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (defun dotspacemacs/emacs-custom-settings ()
@@ -509,7 +514,10 @@ This function is called at the very end of Spacemacs initialization."
  '(org-log-reschedule (quote time))
  '(org-refile-allow-creating-parent-nodes (quote confirm))
  '(org-refile-targets (quote ((org-agenda-files :tag . ""))))
- '(org-refile-use-outline-path (quote file)))
+ '(org-refile-use-outline-path (quote file))
+ '(package-selected-packages
+   (quote
+    (yasnippet web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data company add-node-modules-path ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon symbol-overlay string-inflection spaceline-all-the-icons solarized-theme restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-journal org-download org-cliplink org-bullets org-brain open-junk-file nameless move-text mmm-mode markdown-toc macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio gnuplot gh-md font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
