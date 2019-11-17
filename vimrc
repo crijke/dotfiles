@@ -185,6 +185,7 @@ let g:tagbar_compact = 1
 let g:tagbar_show_visibility = 1
 " edit vimrc
 nmap <leader>ve :e ~/.vimrc<CR>
+nmap <leader>vp :e ~/.vim/plugins.vim<CR>
 nmap <leader>vs :so ~/.vimrc<CR>
 
 " NERDTree

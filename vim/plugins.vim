@@ -9,6 +9,9 @@ Plug 'Valloric/ListToggle'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'bling/vim-airline'
 
+" org
+Plug 'jceb/vim-orgmode'
+
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
