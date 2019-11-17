@@ -8,7 +8,7 @@ brew prune
 brew doctor
 
 # vim
-mvim -v +BundleUpdate +qall
+vim -v +PlugUpdate +qall
 
 # emacs
 cd ~/.emacs.d
