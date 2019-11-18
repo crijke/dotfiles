@@ -456,11 +456,12 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq solarized-use-variable-pitch nil)
   (setq solarized-scale-org-headlines nil)
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "DOING(p)" "WAITING(w)" "SOMEDAY(s)" "|" "DONE(d)" )))
+        '((sequence "TODO(t)" "DOING(p)" "WAITING(w)" "DEFERRED(d)" "SOMEDAY(s)" "|" "DONE(d)" )))
   (setq org-todo-keyword-faces
         '(("TODO" . "#00afaf")
           ("DOING" . "#d75f00")
           ("WAITING" . "#af0000")
+          ("DEFERRED" . "#585858")
           ("SOMEDAY" . "#585858")
           ("DONE" . "#5f8700")
           ))
@@ -508,6 +509,29 @@ This function is called at the very end of Spacemacs initialization."
       ((agenda "" nil)
        (alltodo "" nil))
       nil))))
+ '(org-capture-templates
+   (quote
+    (("i" "Inbox" entry
+      (file "~/org/inbox.org")
+      (file "~/org/templates/task_tpl.txt"))
+     ("w" "Work" entry
+      (file+olp "~/org/tasks.org" "Work" "General")
+      (file "~/org/templates/task_tpl.txt")
+      :prepend t)
+     ("p" "Personal" entry
+      (file+olp "~/org/tasks.org" "Personal" "General")
+      (file "~/org/templates/task_tpl.txt")
+      :prepend t)
+     ("g" "Groceries" entry
+      (file+olp "~/org/tasks.org" "Personal" "Groceries")
+      (file "~/org/templates/task_tpl.txt"))
+     ("n" "Note" entry
+      (file "~/org/notes.org")
+      (file "~/org/templates/note_tpl.txt"))
+     ("h" "Tech Note or How To" entry
+      (file+headline "" "Tech")
+      (file "~/org/templates/note_tpl.txt")))))
+ '(org-clock-into-drawer "CLOCKING")
  '(org-log-into-drawer t)
  '(org-log-reschedule (quote time))
  '(org-refile-allow-creating-parent-nodes (quote confirm))
@@ -521,19 +545,5 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((((class color) (min-colors 89)) (:foreground "#839496" :background "#002b36")))))
 )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-plus-contrib org-mime org-download org-bullets open-junk-file neotree move-text mmm-mode markdown-toc markdown-mode macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio gnuplot gh-md flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async solarized-theme dash))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
