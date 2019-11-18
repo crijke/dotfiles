@@ -481,15 +481,21 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; start on monday
   (setq calendar-week-start-day 1)
+  ;; configure agenda
   (setq org-agenda-files (list "~/org/tasks.org"
                                "~/org/inbox.org"
                                "~/org/notes.org"))
+  ;; configure org-journal
   (setq org-journal-dir "~/org/journal/")
   (setq org-journal-file-format "%Y%m%d.org")
   (org-journal-update-auto-mode-alist)
   (setq org-journal-date-prefix "#+TITLE: ")
   (global-auto-revert-mode t)
+  ;; this is required to make refile with outline path work in helm
+  ;; https://github.com/syl20bnr/spacemacs/issues/3094
+  (setq org-outline-path-complete-in-steps nil)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -535,7 +541,12 @@ This function is called at the very end of Spacemacs initialization."
  '(org-log-into-drawer t)
  '(org-log-reschedule (quote time))
  '(org-refile-allow-creating-parent-nodes (quote confirm))
- '(org-refile-targets (quote ((org-agenda-files :tag . ""))))
+ '(org-refile-targets
+   (quote
+    (("~/org/inbox.org" :level . 0)
+     ("~/org/notes.org" :maxlevel . 1)
+     ("~/org/tasks.org" :level . 2)
+     ("~/org/tickler.org" :maxlevel . 2))))
  '(org-refile-use-outline-path (quote file))
  '(package-selected-packages
    (quote
