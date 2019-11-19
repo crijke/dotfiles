@@ -456,12 +456,11 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq solarized-use-variable-pitch nil)
   (setq solarized-scale-org-headlines nil)
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "DOING(p)" "WAITING(w)" "DEFERRED(d)" "SOMEDAY(s)" "|" "DONE(d)" )))
+        '((sequence "TODO(t)" "DOING(p)" "WAITING(w)" "SOMEDAY(s)" "|" "DONE(d)" )))
   (setq org-todo-keyword-faces
         '(("TODO" . "#00afaf")
           ("DOING" . "#d75f00")
           ("WAITING" . "#af0000")
-          ("DEFERRED" . "#585858")
           ("SOMEDAY" . "#585858")
           ("DONE" . "#5f8700")
           ))
@@ -485,8 +484,8 @@ before packages are loaded."
   (setq calendar-week-start-day 1)
   ;; configure agenda
   (setq org-agenda-files (list "~/org/tasks.org"
-                               "~/org/inbox.org"
-                               "~/org/notes.org"))
+                               "~/org/tickler.org"
+                               "~/org/inbox.org"))
   ;; configure org-journal
   (setq org-journal-dir "~/org/journal/")
   (setq org-journal-file-format "%Y%m%d.org")
@@ -496,6 +495,12 @@ before packages are loaded."
   ;; this is required to make refile with outline path work in helm
   ;; https://github.com/syl20bnr/spacemacs/issues/3094
   (setq org-outline-path-complete-in-steps nil)
+  (setq org-archive-location "archive.org::* %s")
+  ;; set mac modifier keys: alt is alt (to type umlauts), cmd is meta
+  (setq mac-option-key-is-meta nil)
+  (setq mac-command-key-is-meta t)
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier nil)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -538,6 +543,7 @@ This function is called at the very end of Spacemacs initialization."
       (file+headline "" "Tech")
       (file "~/org/templates/note_tpl.txt")))))
  '(org-clock-into-drawer "CLOCKING")
+ '(org-enforce-todo-dependencies t)
  '(org-log-into-drawer t)
  '(org-log-reschedule (quote time))
  '(org-refile-allow-creating-parent-nodes (quote confirm))
