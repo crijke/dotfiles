@@ -38,15 +38,17 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
+     auto-completion
      ;; better-defaults
      emacs-lisp
-     ;; git
+     git
      helm
      ;; lsp
      markdown
+     latex
      multiple-cursors
     (org :variables org-enable-org-journal-support t)
+     python
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -482,25 +484,40 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   ;; start on monday
   (setq calendar-week-start-day 1)
+
   ;; configure agenda
   (setq org-agenda-files (list "~/org/tasks.org"
                                "~/org/tickler.org"
+                               "~/org/groceries.org"
                                "~/org/inbox.org"))
+
   ;; configure org-journal
   (setq org-journal-dir "~/org/journal/")
   (setq org-journal-file-format "%Y%m%d.org")
   (org-journal-update-auto-mode-alist)
   (setq org-journal-date-prefix "#+TITLE: ")
   (global-auto-revert-mode t)
+
   ;; this is required to make refile with outline path work in helm
   ;; https://github.com/syl20bnr/spacemacs/issues/3094
   (setq org-outline-path-complete-in-steps nil)
-  (setq org-archive-location "archive.org::* %s")
+  (setq org-archive-location "archive/archive_%s::")
+
   ;; set mac modifier keys: alt is alt (to type umlauts), cmd is meta
   (setq mac-option-key-is-meta nil)
   (setq mac-command-key-is-meta t)
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier nil)
+
+  ;; add checklist functions like RESET_CHECK_BOXES
+  (require 'org-checklist)
+
+  ;; org-cv
+  (use-package ox-moderncv
+    :load-path "~/src/org-cv/"
+    :init (require 'ox-moderncv)) ;; org-cv
+
+
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -520,9 +537,13 @@ This function is called at the very end of Spacemacs initialization."
       ((agenda "" nil)
        (alltodo "" nil))
       nil))))
+ '(org-agenda-dim-blocked-tasks t)
  '(org-capture-templates
    (quote
-    (("i" "Inbox" entry
+    (("g" "Groceries" entry
+      (file+headline "~/org/groceries.org" "Groceries")
+      (file "~/org/templates/task_tpl.txt"))
+     ("i" "Inbox" entry
       (file "~/org/inbox.org")
       (file "~/org/templates/task_tpl.txt"))
      ("w" "Work" entry
@@ -552,11 +573,23 @@ This function is called at the very end of Spacemacs initialization."
     (("~/org/inbox.org" :level . 0)
      ("~/org/notes.org" :maxlevel . 1)
      ("~/org/tasks.org" :level . 2)
+     ("~/org/groceries.org" :level . 1)
      ("~/org/tickler.org" :maxlevel . 2))))
  '(org-refile-use-outline-path (quote file))
+ '(org-track-ordered-property-with-tag t)
  '(package-selected-packages
    (quote
-    (yasnippet web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data company add-node-modules-path ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon symbol-overlay string-inflection spaceline-all-the-icons solarized-theme restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-journal org-download org-cliplink org-bullets org-brain open-junk-file nameless move-text mmm-mode markdown-toc macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio gnuplot gh-md font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))))
+    (yasnippet web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data company add-node-modules-path ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon symbol-overlay string-inflection spaceline-all-the-icons solarized-theme restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-journal org-download org-cliplink org-bullets org-brain open-junk-file nameless move-text mmm-mode markdown-toc macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio gnuplot gh-md font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+ '(safe-local-variable-values
+   (quote
+    ((eval ap/org-call-src-block "configure-fitness-buffer")
+     (eval setq-local org-confirm-babel-evaluate
+           (lambda
+             (lang body)
+             (not
+              (or
+               (string= lang "python")
+               (string= lang "emacs-lisp")))))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
