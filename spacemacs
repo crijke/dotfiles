@@ -512,11 +512,6 @@ before packages are loaded."
   ;; add checklist functions like RESET_CHECK_BOXES
   (require 'org-checklist)
 
-  ;; org-cv
-  (use-package ox-moderncv
-    :load-path "~/src/org-cv/"
-    :init (require 'ox-moderncv)) ;; org-cv
-
 
 )
 ;; Do not write anything past this comment. This is where Emacs will
