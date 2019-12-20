@@ -42,12 +42,6 @@ alias dockerrmia='docker rmi -f $(docker images -aq)'
 # project specific settings
 source ~/.zshrc_projects
 
-# org
-alias emacs="TERM=xterm-24bit emacs -nw"
-alias org="TERM=xterm-24bit emacs -nw ~/org/tasks.org"
-alias xorg="\emacs ~/org/tasks.org  >/dev/null 2>&1 &"
-alias pushorg="cd ~/org && git add . && git commit -m \"updated `date +'%Y-%m-%d %H:%M:%S'`\" && git push origin master"
-
 # fortune
 echo && fortune | cowsay | lolcat
 
