@@ -10,11 +10,3 @@ brew doctor
 vim -v +PlugUpgrade +qall
 vim -v +PlugUpdate +qall
 
-# emacs
-cd ~/.emacs.d
-git pull
-cd
-
-# mac app store
-mas upgrade
-
