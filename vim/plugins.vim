@@ -29,6 +29,10 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'kana/vim-textobj-user'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+
+" org
+Plug 'jceb/vim-orgmode'
 
 " markup
 Plug 'tpope/vim-markdown'
