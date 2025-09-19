@@ -10,10 +10,6 @@ brew doctor
 vim -v +PlugUpgrade +qall
 vim -v +PlugUpdate +qall
 
-# nvm lts
-nvm install --lts
-nvm use --lts
-
 # Jetbrains
 open /Applications/JetBrains\ Toolbox.app
 
