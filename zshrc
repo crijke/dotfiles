@@ -4,31 +4,49 @@ plugins=(git brew macos python docker node npm)
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
 
-# iterm2
+# MacOS
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export LDFLAGS="-L/opt/homebrew/opt/zlib/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/zlib/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig"
+alias openobsidian=open
+
+# Fedora
+# alias dnfu="sudo dnf upgrade --refresh"
+# alias dnfds="sudo dnf distro-sync"
+# alias openobsidian=xdg-open
 
 # set local variables in way that remote server usually understand
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-# general / homebrew
+# fastfetch
+alias ff="fastfetch"
+
+# editors
 export EDITOR='mvim -v'
 alias vim="mvim -v"
 alias ws="webstorm ."
 alias wse="webstorm1 ."
+alias vi="code-insiders ."
+alias v="code ."
+alias c="cursor ."
+alias we="webstorm1 ."
+alias w="webstorm ."
+alias s="windsurf ."
+alias i="idea ."
+alias claude="/Users/crijke/.claude/local/claude"
+alias tm="task-master"
 
-# homebrew
-export PATH=~/.bin:/opt/homebrew/sbin:/opt/homebrew/bin:$PATH
-export HOMEBREW_NO_GITHUB_API=true
-
-# go
-export PATH=/usr/local/go/bin:$PATH
+# path
+export PATH=~/.local/bin:$PATH
 
 # python
-export PATH=/opt/homebrew/opt/python/libexec/bin:$PATH
-
-# ruby
-eval "$(rbenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init -)"
 
 # serverless
 export PATH="$HOME/.serverless/bin:$PATH"
@@ -40,42 +58,22 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # node
-# NODE_OPTIONS=--max_old_space_size=8192
 nvm use --lts > /dev/null
 echo
-echo node $(node -v)
-echo npm $(npm -v)
+echo "node   " $(node -v)
+echo "npm    " $(npm -v)
+echo "python " $(pyenv global)
 
-# postgres
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-
-# rust
-source "$HOME/.cargo/env"
-
-
-# sdkman
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# thefuck
-eval $(thefuck --alias)
-
+# docker
+fpath=(/Users/crijke/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
 
 # work env switcher
 alias workenv='node ~/.dotfiles/bin/workenv/dist/index.js'
 workenv list
 
-
 # project specific settings
 source ~/.zshrc_projects
 
-echo
-fortune
-echo
-#echo && fortune |  cowsay
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/crijke/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions

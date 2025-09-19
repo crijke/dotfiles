@@ -10,7 +10,7 @@ brew doctor
 vim -v +PlugUpgrade +qall
 vim -v +PlugUpdate +qall
 
-#nvm lts
+# nvm lts
 nvm install --lts
 nvm use --lts
 
