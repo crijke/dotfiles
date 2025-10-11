@@ -1,3 +1,3 @@
 #!/bin/bash
 #
-ncc build ./index.js -o dist
+npx ncc build ./index.js -o dist
