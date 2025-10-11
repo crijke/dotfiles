@@ -5,17 +5,20 @@ source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
 
 # MacOS
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-eval "$(/opt/homebrew/bin/brew shellenv)"
-export LDFLAGS="-L/opt/homebrew/opt/zlib/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/zlib/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig"
-alias openobsidian=open
+# test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+# export LDFLAGS="-L/opt/homebrew/opt/zlib/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/zlib/include"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig"
+# alias openobsidian=open
+# export EDITOR='mvim -v'
+# alias vim="mvim -v"
 
 # Fedora
-# alias dnfu="sudo dnf upgrade --refresh"
-# alias dnfds="sudo dnf distro-sync"
-# alias openobsidian=xdg-open
+alias dnfu="sudo dnf upgrade --refresh"
+alias dnfds="sudo dnf distro-sync"
+alias openobsidian=xdg-open
+export EDITOR='vim'
 
 # set local variables in way that remote server usually understand
 export LC_ALL=en_US.UTF-8
@@ -25,15 +28,12 @@ export LANG=en_US.UTF-8
 alias ff="fastfetch"
 
 # editors
-export EDITOR='mvim -v'
-alias vim="mvim -v"
-alias ws="webstorm ."
-alias wse="webstorm1 ."
+
+alias w="webstorm . 2> /dev/null &"
+alias ws="webstorm . 2> /dev/null &"
 alias vi="code-insiders ."
 alias v="code ."
 alias c="cursor ."
-alias we="webstorm1 ."
-alias w="webstorm ."
 alias s="windsurf ."
 alias i="idea ."
 alias claude="/Users/crijke/.claude/local/claude"
@@ -47,10 +47,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 eval "$(pyenv virtualenv-init -)"
-
-# serverless
-export PATH="$HOME/.serverless/bin:$PATH"
-export PATH="$HOME/.poetry/bin:$PATH"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"

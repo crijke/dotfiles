@@ -2,12 +2,7 @@
 
 
 function install_dotfiles {
-  echo "installing dotfile..."
-  files=(gitignore vimrc vim zshrc)
-  for i in "${files[@]}"
-  do
-    ln -svf "$PWD/$i" "$HOME/.$i"
-  done
+  stow .
 }
 
 
