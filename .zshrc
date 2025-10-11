@@ -66,7 +66,7 @@ autoload -Uz compinit
 compinit
 
 # work env switcher
-alias workenv='node ~/.dotfiles/bin/workenv/dist/index.js'
+alias workenv='node ~/.local/bin/workenv/dist/index.js'
 workenv list
 
 # project specific settings
