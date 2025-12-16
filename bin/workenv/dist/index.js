@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 80:
+/***/ 412:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 "use strict";
@@ -48,7 +48,7 @@ const setLazyProperty = (object, property, get) => {
 let colorConvert;
 const makeDynamicStyles = (wrap, targetSpace, identity, isBackground) => {
 	if (colorConvert === undefined) {
-		colorConvert = __nccwpck_require__(477);
+		colorConvert = __nccwpck_require__(185);
 	}
 
 	const offset = isBackground ? 10 : 0;
@@ -173,17 +173,17 @@ Object.defineProperty(module, 'exports', {
 
 /***/ }),
 
-/***/ 29:
+/***/ 465:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 "use strict";
 
-const ansiStyles = __nccwpck_require__(80);
-const {stdout: stdoutColor, stderr: stderrColor} = __nccwpck_require__(694);
+const ansiStyles = __nccwpck_require__(412);
+const {stdout: stdoutColor, stderr: stderrColor} = __nccwpck_require__(450);
 const {
 	stringReplaceAll,
 	stringEncaseCRLFWithFirstIndex
-} = __nccwpck_require__(226);
+} = __nccwpck_require__(809);
 
 const {isArray} = Array;
 
@@ -392,7 +392,7 @@ const chalkTag = (chalk, ...strings) => {
 	}
 
 	if (template === undefined) {
-		template = __nccwpck_require__(962);
+		template = __nccwpck_require__(670);
 	}
 
 	return template(chalk, parts.join(''));
@@ -410,7 +410,7 @@ module.exports = chalk;
 
 /***/ }),
 
-/***/ 962:
+/***/ 670:
 /***/ ((module) => {
 
 "use strict";
@@ -552,7 +552,7 @@ module.exports = (chalk, temporary) => {
 
 /***/ }),
 
-/***/ 226:
+/***/ 809:
 /***/ ((module) => {
 
 "use strict";
@@ -599,12 +599,12 @@ module.exports = {
 
 /***/ }),
 
-/***/ 228:
+/***/ 872:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 /* MIT license */
 /* eslint-disable no-mixed-operators */
-const cssKeywords = __nccwpck_require__(845);
+const cssKeywords = __nccwpck_require__(953);
 
 // NOTE: conversions should only return primitive values (i.e. arrays, or
 //       values that give correct `typeof` results).
@@ -1445,11 +1445,11 @@ convert.rgb.gray = function (rgb) {
 
 /***/ }),
 
-/***/ 477:
+/***/ 185:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const conversions = __nccwpck_require__(228);
-const route = __nccwpck_require__(84);
+const conversions = __nccwpck_require__(872);
+const route = __nccwpck_require__(200);
 
 const convert = {};
 
@@ -1533,10 +1533,10 @@ module.exports = convert;
 
 /***/ }),
 
-/***/ 84:
+/***/ 200:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const conversions = __nccwpck_require__(228);
+const conversions = __nccwpck_require__(872);
 
 /*
 	This function routes a model to all other models.
@@ -1637,7 +1637,7 @@ module.exports = function (fromModel) {
 
 /***/ }),
 
-/***/ 845:
+/***/ 953:
 /***/ ((module) => {
 
 "use strict";
@@ -1797,7 +1797,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 401:
+/***/ 813:
 /***/ ((module) => {
 
 "use strict";
@@ -1813,14 +1813,14 @@ module.exports = (flag, argv = process.argv) => {
 
 /***/ }),
 
-/***/ 694:
+/***/ 450:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 "use strict";
 
 const os = __nccwpck_require__(857);
 const tty = __nccwpck_require__(18);
-const hasFlag = __nccwpck_require__(401);
+const hasFlag = __nccwpck_require__(813);
 
 const {env} = process;
 
@@ -2041,9 +2041,9 @@ module.exports = require("tty");
 var __webpack_exports__ = {};
 const fs = __nccwpck_require__(896)
 const path = __nccwpck_require__(928)
-const chalk = __nccwpck_require__(29)
+const chalk = __nccwpck_require__(465)
 
-if (process.argv.length !== 3 || process.argv[2] === 'help' || process.argv[2] === undefined) {
+if (process.argv[2] === 'help') {
     console.log("work env switcher\n")
     console.log("usage:")
     console.log("workenv [personal|work] - activate workenv")
@@ -2051,7 +2051,7 @@ if (process.argv.length !== 3 || process.argv[2] === 'help' || process.argv[2] =
     process.exit(1)
 }
 
-if (process.argv[2] === 'list') {
+if (process.argv.length !== 3 || process.argv[2] === 'list' || process.argv[2] === undefined) {
     const currentEnv = fs.readFileSync(path.join(process.env.HOME, '.workenv', 'env'))
     console.log(chalk.blue(`work env: ${currentEnv}`))
     process.exit(0)

@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
 
-if (process.argv.length !== 3 || process.argv[2] === 'help' || process.argv[2] === undefined) {
+if (process.argv[2] === 'help') {
     console.log("work env switcher\n")
     console.log("usage:")
     console.log("workenv [personal|work] - activate workenv")
@@ -10,7 +10,7 @@ if (process.argv.length !== 3 || process.argv[2] === 'help' || process.argv[2] =
     process.exit(1)
 }
 
-if (process.argv[2] === 'list') {
+if (process.argv.length !== 3 || process.argv[2] === 'list' || process.argv[2] === undefined) {
     const currentEnv = fs.readFileSync(path.join(process.env.HOME, '.workenv', 'env'))
     console.log(chalk.blue(`work env: ${currentEnv}`))
     process.exit(0)
