@@ -1,0 +1,14 @@
+{
+  "name": "work_env",
+  "version": "1.0.0",
+  "description": "npmrc and gitconfig configuration switcher",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christian Rijke",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}

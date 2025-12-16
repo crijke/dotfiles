@@ -36,8 +36,21 @@ alias v="code ."
 alias c="cursor ."
 alias s="windsurf ."
 alias i="idea ."
-alias claude="/Users/crijke/.claude/local/claude"
+#alias claude="/Users/crijke/.claude/local/claude"
 alias tm="task-master"
+
+export PATH="/Users/crijke/.codeium/windsurf/bin:$PATH"
+export PATH="/Users/crijke/.antigravity/antigravity/bin:$PATH"
+
+# tools
+alias ldo="lazydocker"
+alias lgit="lazygit"
+
+# github copilot
+eval "$(gh copilot alias -- zsh)"
+
+# vscode shell integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
 
 # path
 export PATH=~/.local/bin:$PATH
@@ -47,6 +60,14 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 eval "$(pyenv virtualenv-init -)"
+
+# java
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# serverless
+export PATH="$HOME/.serverless/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -71,5 +92,3 @@ workenv list
 
 # project specific settings
 source ~/.zshrc_projects
-
-
