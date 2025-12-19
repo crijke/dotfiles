@@ -4,13 +4,15 @@
   "description": "npmrc and gitconfig configuration switcher",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx ncc build ./index.js -o dist"
   },
   "author": "Christian Rijke",
   "license": "MIT",
   "dependencies": {
-    "@vercel/ncc": "^0.38.4",
-    "chalk": "^4.1.2",
-    "ncc": "^0.3.6"
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.1"
   }
 }

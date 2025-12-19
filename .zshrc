@@ -5,20 +5,20 @@ source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
 
 # MacOS
-# test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-# eval "$(/opt/homebrew/bin/brew shellenv)"
-# export LDFLAGS="-L/opt/homebrew/opt/zlib/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/zlib/include"
-# export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig"
-# alias openobsidian=open
-# export EDITOR='mvim -v'
-# alias vim="mvim -v"
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export LDFLAGS="-L/opt/homebrew/opt/zlib/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/zlib/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig"
+alias openobsidian=open
+export EDITOR='mvim -v'
+alias vim="mvim -v"
 
 # Fedora
-alias dnfu="sudo dnf upgrade --refresh"
-alias dnfds="sudo dnf distro-sync"
-alias openobsidian=xdg-open
-export EDITOR='vim'
+# alias dnfu="sudo dnf upgrade --refresh"
+# alias dnfds="sudo dnf distro-sync"
+# alias openobsidian=xdg-open
+# export EDITOR='vim'
 
 # set local variables in way that remote server usually understand
 export LC_ALL=en_US.UTF-8
@@ -45,9 +45,6 @@ export PATH="/Users/crijke/.antigravity/antigravity/bin:$PATH"
 # tools
 alias ldo="lazydocker"
 alias lgit="lazygit"
-
-# github copilot
-eval "$(gh copilot alias -- zsh)"
 
 # vscode shell integration
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"

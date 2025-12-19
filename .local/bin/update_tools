@@ -5,16 +5,16 @@ vim -v +PlugUpgrade +qall
 vim -v +PlugUpdate +qall
 
 # macos
-# brew update
-# brew upgrade
-# brew cleanup
-# brew doctor
-# open /Applications/JetBrains\ Toolbox.app
+brew update
+brew upgrade
+brew cleanup
+brew doctor
+open /Applications/JetBrains\ Toolbox.app
 
 # fedora
-sudo dnf upgrade --refresh -y
-sudo dnf autoremove -y
-sudo dnf clean all
+#sudo dnf upgrade --refresh -y
+#sudo dnf autoremove -y
+#sudo dnf clean all
 
 # dev tools
 ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox > /dev/null &
