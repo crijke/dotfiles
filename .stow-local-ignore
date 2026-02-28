@@ -2,3 +2,4 @@ install.sh
 LICENSE
 README.md
 .git
+.DS_Store
