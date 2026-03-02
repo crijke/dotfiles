@@ -78,6 +78,7 @@ export NVM_DIR="$HOME/.nvm"
 # node
 nvm use --lts > /dev/null
 echo
+echo "ip     " $( ipconfig getifaddr en0)
 echo "node   " $(node -v)
 echo "npm    " $(npm -v)
 echo "python " $(pyenv global)
