@@ -1,6 +1,6 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="simple"
-plugins=(git brew macos python docker node npm)
+plugins=(git brew macos python docker node npm tmux)
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
 
