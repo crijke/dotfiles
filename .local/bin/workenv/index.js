@@ -27,6 +27,7 @@ const env = process.argv[2]
 const envDirectory = path.join(process.env.HOME, '.workenv/', env)
 const NPMRC_HOME = path.join(process.env.HOME, ".npmrc");
 const GITCONFIG_HOME = path.join(process.env.HOME, ".gitconfig");
+const GRADLE_PROPERTIES_HOME = path.join(process.env.HOME, ".gradle", "gradle.properties");
 
 fs.rmSync(NPMRC_HOME, {
     force: true,
@@ -34,8 +35,15 @@ fs.rmSync(NPMRC_HOME, {
 fs.rmSync(GITCONFIG_HOME, {
     force: true,
 })
+fs.rmSync(GRADLE_PROPERTIES_HOME, {
+    force: true,
+})
 fs.symlinkSync(path.join(envDirectory, ".npmrc"), NPMRC_HOME)
 fs.symlinkSync(path.join(envDirectory, ".gitconfig"), GITCONFIG_HOME)
+
+if (fs.existsSync(path.join(envDirectory, "gradle.properties"))) {
+    fs.symlinkSync(path.join(envDirectory, "gradle.properties"), GRADLE_PROPERTIES_HOME)
+}
 
 fs.writeFileSync(path.join(process.env.HOME, '.workenv', 'env'), `${env}\n`)
 
