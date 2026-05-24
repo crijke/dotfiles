@@ -25,6 +25,7 @@ elif [[ "$OS" == "Linux" ]]; then
     export EDITOR='vim'
 fi
 
+
 # set local variables in way that remote server usually understand
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -33,34 +34,41 @@ export LANG=en_US.UTF-8
 alias ff="fastfetch"
 
 # editors
-
-alias w="webstorm . 2> /dev/null &"
-alias ws="webstorm . 2> /dev/null &"
-alias vi="code-insiders ."
-alias v="code ."
-alias c="cursor ."
-alias s="windsurf ."
-alias i="idea ."
-#alias claude="/Users/crijke/.claude/local/claude"
+alias w="at-root webstorm . 2> /dev/null &"
+alias ws="at-root webstorm . 2> /dev/null &"
+alias vi="at-root code-insiders ."
+alias v="at-root code ."
+alias c="at-root cursor ."
+alias s="at-root windsurf ."
+alias i="at-root idea ."
 alias tm="task-master"
-
-export PATH="/Users/crijke/.codeium/windsurf/bin:$PATH"
-export PATH="/Users/crijke/.antigravity/antigravity/bin:$PATH"
 
 # tools
 alias ldo="lazydocker"
 alias lgit="lazygit"
 
-# vscode shell integration
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+#tmux
+alias tns="tmux new -s"
 
-# path
-export PATH=~/.local/bin:$PATH
+export PATH="/Users/crijke/.codeium/windsurf/bin:$PATH"
+export PATH="/Users/crijke/.antigravity/antigravity/bin:$PATH"
+export PATH="/Users/crijke/.lmstudio/bin:$PATH"
+export PATH="/Users/crijke/.antigravity-ide/antigravity-ide/bin:$PATH"
+export PATH="/Users/crijke/.opencode/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+# shell integrations
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# worktrunk
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 
 # python
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+[[ -d $PYENV_ROOT/shims ]] && export PATH="$PYENV_ROOT/shims:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
 
 # java
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -68,7 +76,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # serverless
 export PATH="$HOME/.serverless/bin:$PATH"
-export PATH="$HOME/.poetry/bin:$PATH"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -77,16 +84,18 @@ export NVM_DIR="$HOME/.nvm"
 
 # node
 nvm use --lts > /dev/null
-echo
-echo "ip     " $( ipconfig getifaddr en0)
-echo "node   " $(node -v)
-echo "npm    " $(npm -v)
-echo "python " $(pyenv global)
 
 # docker
 fpath=(/Users/crijke/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
+
+# shell welcome screen
+echo
+echo "ip     " $( ipconfig getifaddr en0)
+echo "node   " $(node -v)
+echo "npm    " $(npm -v)
+echo "python " $(pyenv global)
 
 # work env switcher
 alias workenv='node ~/.local/bin/workenv/dist/index.js'
@@ -94,22 +103,4 @@ workenv list
 
 # project specific settings
 source ~/.zshrc_projects
-
-# opencode
-export PATH=/Users/crijke/.opencode/bin:$PATH
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-#__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-#if [ $? -eq 0 ]; then
-#    eval "$__conda_setup"
-#else
-#    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-#        . "/opt/anaconda3/etc/profile.d/conda.sh"
-#    else
-#        export PATH="/opt/anaconda3/bin:$PATH"
-#    fi
-#fi
-#unset __conda_setup
-# <<< conda initialize <<<
 
