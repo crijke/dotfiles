@@ -1,3 +1,4 @@
+.DS_Store
 .vim/plugged
 .local/bin/workenv/node_modules
 .local/bin/workenv/dist

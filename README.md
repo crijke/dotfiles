@@ -6,4 +6,5 @@
 - `cd .dotfiles`
 - `./install.sh`
 
-Warning: This will symlink and overwrite stuff in your home directory. There be dragons.
+The installer uses GNU Stow to symlink this repo into your home directory.
+Stow will stop on conflicts instead of overwriting existing files.
