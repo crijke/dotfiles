@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ $# -eq 0 ]; then
+    echo "usage: $(basename "$0") <command> [args...]" >&2
+    exit 64
+fi
+
+target="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+
+cd "$target"
+exec "$@"
