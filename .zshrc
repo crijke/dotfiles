@@ -57,6 +57,10 @@ export PATH="/Users/crijke/.antigravity-ide/antigravity-ide/bin:$PATH"
 export PATH="/Users/crijke/.opencode/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+
+# AI
+export CLAUDE_CODE_NO_FLICKER=1
+
 # shell integrations
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
@@ -64,11 +68,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # worktrunk
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 
-# python
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-[[ -d $PYENV_ROOT/shims ]] && export PATH="$PYENV_ROOT/shims:$PATH"
-export PATH="$HOME/.poetry/bin:$PATH"
 
 # java
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -90,12 +89,16 @@ fpath=(/Users/crijke/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 
+
+# terminal
+TERM=xterm-256color
+
 # shell welcome screen
 echo
 echo "ip     " $( ipconfig getifaddr en0)
-echo "node   " $(node -v)
+echo "node   " ${$(node -v)#v}
 echo "npm    " $(npm -v)
-echo "python " $(pyenv global)
+echo "python " ${$(python --version)[-1]}
 
 # work env switcher
 alias workenv='node ~/.local/bin/workenv/dist/index.js'
