@@ -29,5 +29,27 @@ install_oh_my_zsh() {
   fi
 }
 
+install_neovim_deps() {
+  read -r -p "Install Neovim and its dependencies via Homebrew? [y/N] " reply
+  if [[ ! "$reply" =~ ^[Yy]$ ]]; then
+    return
+  fi
+
+  if ! command -v brew >/dev/null 2>&1; then
+    echo "error: Homebrew is not installed or not on PATH" >&2
+    return 1
+  fi
+
+  brew install neovim tree-sitter-cli ripgrep fd fzf
+
+  # language servers installed by mason need these runtimes
+  for cmd in node npm ruby gem; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      echo "warning: $cmd not found; some language servers will fail to install" >&2
+    fi
+  done
+}
+
 install_dotfiles
 install_oh_my_zsh
+install_neovim_deps

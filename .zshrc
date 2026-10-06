@@ -9,14 +9,13 @@ OS="$(uname -s)"
 
 if [[ "$OS" == "Darwin" ]]; then
     # macOS
-    test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
     eval "$(/opt/homebrew/bin/brew shellenv)"
     export LDFLAGS="-L/opt/homebrew/opt/zlib/lib"
     export CPPFLAGS="-I/opt/homebrew/opt/zlib/include"
     export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig"
     alias openobsidian=open
-    export EDITOR='mvim -v'
-    alias vim="mvim -v"
+    export EDITOR="nvim"
+    alias vim="nvim"
 elif [[ "$OS" == "Linux" ]]; then
     # Fedora
     alias dnfu="sudo dnf upgrade --refresh"
@@ -47,8 +46,20 @@ alias tm="task-master"
 alias ldo="lazydocker"
 alias lgit="lazygit"
 
-#tmux
+# tmux
 alias tns="tmux new -s"
+alias ta='tmux attach -t "$(tmux list-sessions -F "#S" | fzf)"'
+function tat {
+   name=$(basename `pwd` | sed -e 's/\.//g')
+
+   if tmux ls 2>&1 | grep "$name"; then
+     tmux attach -t "$name"
+   elif [ -f .envrc  ]; then
+     direnv exec / tmux new-session -s "$name"
+   else
+     tmux new-session -s "$name"
+   fi
+}
 
 export PATH="/Users/crijke/.codeium/windsurf/bin:$PATH"
 export PATH="/Users/crijke/.antigravity/antigravity/bin:$PATH"
@@ -107,3 +118,9 @@ workenv list
 # project specific settings
 source ~/.zshrc_projects
 
+# bun completions
+[ -s "/Users/crijke/.bun/_bun" ] && source "/Users/crijke/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
