@@ -96,7 +96,7 @@ export NVM_DIR="$HOME/.nvm"
 nvm use --lts > /dev/null
 
 # docker
-fpath=(/Users/crijke/.docker/completions $fpath)
+fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 
@@ -124,6 +124,6 @@ workenv list
 source ~/.zshrc_projects
 
 # bun
-[ -s "/Users/crijke/.bun/_bun" ] && source "/Users/crijke/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
