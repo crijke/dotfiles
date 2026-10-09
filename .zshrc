@@ -61,15 +61,15 @@ function tat {
    fi
 }
 
-export PATH="/Users/crijke/.codeium/windsurf/bin:$PATH"
-export PATH="/Users/crijke/.antigravity/antigravity/bin:$PATH"
-export PATH="/Users/crijke/.lmstudio/bin:$PATH"
-export PATH="/Users/crijke/.antigravity-ide/antigravity-ide/bin:$PATH"
-export PATH="/Users/crijke/.opencode/bin:$PATH"
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.lmstudio/bin:$PATH"
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
+export PATH="$HOME/.opencode/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 
-# AI
+# claude
 export CLAUDE_CODE_NO_FLICKER=1
 
 # shell integrations
@@ -100,13 +100,18 @@ fpath=(/Users/crijke/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 
+# python
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
 
 # terminal
 TERM=xterm-256color
 
 # shell welcome screen
 echo
-echo "ip     " $( ipconfig getifaddr en0)
+echo "ip     " $(ipconfig getifaddr en0)
 echo "node   " ${$(node -v)#v}
 echo "npm    " $(npm -v)
 echo "python " ${$(python --version)[-1]}
@@ -118,9 +123,7 @@ workenv list
 # project specific settings
 source ~/.zshrc_projects
 
-# bun completions
-[ -s "/Users/crijke/.bun/_bun" ] && source "/Users/crijke/.bun/_bun"
-
 # bun
+[ -s "/Users/crijke/.bun/_bun" ] && source "/Users/crijke/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
