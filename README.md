@@ -59,6 +59,10 @@ workenv list       # show the active environment
 
 These files hold credentials and are deliberately kept out of this repo.
 
+## Secret scanning
+
+`install.sh` enables a pre-commit hook (`.githooks/pre-commit`) that runs [gitleaks](https://github.com/gitleaks/gitleaks) on staged changes and blocks commits containing secrets. Install it with `brew install gitleaks`.
+
 ## License
 
 [MIT](LICENSE)

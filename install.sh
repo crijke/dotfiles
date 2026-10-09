@@ -13,6 +13,14 @@ install_dotfiles() {
   stow --dir="$DOTFILES_DIR" --target="$HOME" --restow .
 }
 
+install_git_hooks() {
+  git -C "$DOTFILES_DIR" config core.hooksPath .githooks
+
+  if ! command -v gitleaks >/dev/null 2>&1; then
+    echo "warning: gitleaks not found; commits to this repo will be blocked until it is installed" >&2
+  fi
+}
+
 
 install_oh_my_zsh() {
   read -r -p "Install oh-my-zsh? [y/N] " reply
@@ -51,5 +59,6 @@ install_neovim_deps() {
 }
 
 install_dotfiles
+install_git_hooks
 install_oh_my_zsh
 install_neovim_deps

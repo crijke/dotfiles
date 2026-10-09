@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Block commits that contain secrets. Bypass a false positive with `git commit --no-verify`.
+set -euo pipefail
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+    echo "pre-commit: gitleaks is not installed (brew install gitleaks)" >&2
+    exit 1
+fi
+
+exec gitleaks git --pre-commit --staged --redact --no-banner --verbose
